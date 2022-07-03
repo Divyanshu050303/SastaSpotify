@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">SastaSpotify</string>
+    <string name="Alka_yagnik">Alka Yagnik</string>
+    <string name="Amit_Trivedi">Amit Trivedi</string>
+    <string name="AR_Rahman">AR Rahman</string>
+    <string name="Arjit_Singh">Arjit Singh</string>
+    <string name="Asha_Bhonsle">Asha Bhonsle</string>
+    <string name="Badshah">Badshah</string>
+    <string name="Dhvani_Bhanushani">Dhvani Bhanushani</string>
+    <string name="Guru_Randhawa">Guru Randhawa</string>
+    <string name="Honey_Singh">Honey Singh</string>
+    <string name="Kanika">Kanika</string>
+    <string name="Kumar_Sanu">Kumar_Sanu</string>
+    <string name="Monali_Thakur">Monali Thakur</string>
+    <string name="Neha_Kakkar">Neha Kakkar</string>
+    <string name="Palak_Muchhal">Palak Muchhal</string>
+    <string name="Sherya_Ghoshal">Sherya Ghoshal</string>
+    <string name="Sonu_Nigam">Sonu Nigam</string>
+    <string name="Sonu">Sonu Kakkar</string>
+    <string name="Tony_kakkar">Tony Kakkar</string>
+    <string name="Udit_Narayan">Udit Narayan</string>
+
+</resources>
