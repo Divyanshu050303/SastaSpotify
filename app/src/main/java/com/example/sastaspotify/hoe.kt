@@ -2,6 +2,7 @@ package com.example.sastaspotify
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -15,10 +16,18 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.sastaspotify.ui.theme.SastaSpotifyTheme
+import java.time.format.TextStyle
 
 @Composable
 fun home(){
@@ -29,36 +38,39 @@ fun HomeScreen(modifier: Modifier =Modifier){
     Column(modifier
         .verticalScroll(rememberScrollState())
         .padding(vertical = 16.dp)) {
-        SearchBar()
-        AlignYourBodyRow()
-
+        Column {
+            SearchBar()
+            AlignYourBodyRow()
+            AlignYourBodyRowPlaylist()
+            AlignYourBodyRowPlaylistMood()
+        }
     }
 }
 @Composable
 fun SearchBar(modifier: Modifier = Modifier)
 {
-    TextField(
-        value="",
-        onValueChange = {},
-        leadingIcon = {
-            Icon(imageVector = Icons.Default.Search, contentDescription = null)
-        },
-        colors= TextFieldDefaults.textFieldColors(
-            backgroundColor = MaterialTheme.colors.surface
-        ),
-        placeholder = {
-            Text(text = "Search")
-        },
-
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-            .heightIn(min = 52.dp),
-        shape = RoundedCornerShape(8.dp),
-
+    Column {
+        TextField(
+            value = "",
+            onValueChange = {},
+            leadingIcon = {
+                Icon(imageVector = Icons.Default.Search, contentDescription = null)
+            },
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = MaterialTheme.colors.surface
+            ),
+            placeholder = {
+                Text(text = "Search")
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+                .heightIn(min = 52.dp),
+            shape = RoundedCornerShape(8.dp),
         )
+        Text("Popular artists", style = MaterialTheme.typography.h4, color = Color.White, modifier = modifier.padding(8.dp) )
+    }
 }
-
 private val alignYourBodyData= listOf(
     R.drawable.alka_yagnik to R.string.Alka_yagnik,
     R.drawable.ar_rahman to R.string.AR_Rahman,
@@ -79,7 +91,6 @@ private val alignYourBodyData= listOf(
     R.drawable.tony_kakkar to R.string.Tony_kakkar,
     R.drawable.dhvani_bhanushani to R.string.Dhvani_Bhanushani,
     R.drawable.udit_narayan to R.string.Udit_Narayan,
-
     ).map { DrawableStringPair(it.first, it.second) }
 private data class DrawableStringPair(
     @DrawableRes val drawable:Int,
@@ -89,16 +100,20 @@ private data class DrawableStringPair(
 fun AlignYourBodyRow(
     modifier: Modifier = Modifier
 ) {
-    LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp),
-        modifier = modifier
-    ) {
-        items(alignYourBodyData) { item ->
-            AlignYourBodyElement(
-                drawable = item.drawable,
-                text = item.text)
+    Column {
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = PaddingValues(horizontal = 16.dp),
+            modifier = modifier
+        ) {
+            items(alignYourBodyData) { item ->
+                AlignYourBodyElement(
+                    drawable = item.drawable,
+                    text = item.text,
+                )
+            }
         }
+        Text("Popular albums", style = MaterialTheme.typography.h4, color = Color.White, modifier = modifier.padding(8.dp))
     }
 }
 @Composable
@@ -107,6 +122,7 @@ fun AlignYourBodyElement(
     @StringRes text: Int,
     modifier: Modifier = Modifier
 ) {
+
     Column(modifier = modifier) {
         Image(
             painter = painterResource(drawable),
@@ -123,6 +139,129 @@ fun AlignYourBodyElement(
                 top=24.dp, bottom = 8.dp
             )
         )
+    }
+}
+private val alignyourplaylistdata= listOf(
+R.drawable.hindi to R.string.Top_hit_Hindi,
+R.drawable.punjabi to R.string.Hit_punjabi,
+R.drawable.topglobal to R.string.Top_50_global,
+R.drawable.tamil to R.string.Hit_tamil,
+R.drawable.telugu to R.string.Hit_talugu,
+R.drawable.viralglobal to R.string.Viral_Global,
+R.drawable.top50india to R.string.Top_50_India,
+R.drawable.punjabi to R.string.Hit_punjabi,
+).map { DrawableStringPairPlaylist(it.first, it.second) }
+private data class DrawableStringPairPlaylist(
+    @DrawableRes val drawable:Int,
+    @StringRes val text:Int
+)
+@Composable
+fun AlignYourBodyRowPlaylist(
+    modifier: Modifier = Modifier
+) {
+    Column {
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = PaddingValues(horizontal = 16.dp),
+            modifier = modifier
+        ) {
+            items(alignyourplaylistdata) { item ->
+                AlignYourBodyElementPlaylist(
+                    drawable = item.drawable,
+                    text = item.text,
+                )
+            }
+        }
+        Text("Mood", style = MaterialTheme.typography.h4, color = Color.White, modifier = modifier.padding(8.dp))
+    }
+}
+@Composable
+fun AlignYourBodyElementPlaylist(
+    @DrawableRes drawable: Int,
+    @StringRes text: Int,
+    modifier: Modifier = Modifier
+) {
 
+    Column(modifier = modifier) {
+        Image(
+            painter = painterResource(drawable),
+            contentDescription =null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(140.dp)
+                .clip(RoundedCornerShape(7.dp))
+        )
+        Text(
+            text= stringResource(text),
+            style = MaterialTheme.typography.h6,
+            modifier = Modifier.paddingFromBaseline(
+                top=24.dp, bottom = 8.dp
+            )
+        )
+    }
+}private val alignyourplaylistMooddata= listOf(
+R.drawable.mood to R.string.Mood_Booster,
+R.drawable.feelingood to R.string.Feeling_Good,
+R.drawable.dark to R.string.Dark_Stromy,
+R.drawable.feelgoodpiano to R.string.feel_good,
+R.drawable.myself to R.string.Myself,
+R.drawable.youandme to R.string.youandme,
+R.drawable.calmdeforestrome to R.string.calmBefore,
+
+).map { DrawableStringPairPlaylistMood(it.first, it.second) }
+private data class DrawableStringPairPlaylistMood(
+    @DrawableRes val drawable:Int,
+    @StringRes val text:Int
+)
+@Composable
+fun AlignYourBodyRowPlaylistMood(
+    modifier: Modifier = Modifier
+) {
+    Column {
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = PaddingValues(horizontal = 16.dp),
+            modifier = modifier
+        ) {
+            items(alignyourplaylistMooddata) { item ->
+                AlignYourBodyElementPlaylistMood(
+                    drawable = item.drawable,
+                    text = item.text,
+                )
+            }
+        }
+        Text("Popular albums", style = MaterialTheme.typography.h4, color = Color.White, modifier = modifier.padding(8.dp))
+    }
+}
+@Composable
+fun AlignYourBodyElementPlaylistMood(
+    @DrawableRes drawable: Int,
+    @StringRes text: Int,
+    modifier: Modifier = Modifier
+) {
+
+    Column(modifier = modifier) {
+        Image(
+            painter = painterResource(drawable),
+            contentDescription =null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(140.dp)
+                .clip(RoundedCornerShape(7.dp))
+        )
+        Text(
+            text= stringResource(text),
+            style = MaterialTheme.typography.h6,
+            modifier = Modifier.paddingFromBaseline(
+                top=24.dp, bottom = 8.dp
+            )
+        )
+    }
+}
+@Preview
+@Composable
+fun AlignYourBodyRowPlaylistPreview(){
+    SastaSpotifyTheme {
+        AlignYourBodyRowPlaylist()
     }
 }
