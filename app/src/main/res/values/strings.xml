@@ -19,5 +19,20 @@
     <string name="Sonu">Sonu Kakkar</string>
     <string name="Tony_kakkar">Tony Kakkar</string>
     <string name="Udit_Narayan">Udit Narayan</string>
+    <string name="Hit_tamil">Hit Tamil</string>
+    <string name="punjabi">Hit Punjabi</string>
+    <string name="Hit_talugu">Hit Telugu</string>
+    <string name="Hit_punjabi">Hit Punjabi</string>
+    <string name="Top_50_global">Top Global</string>
+    <string name="Top_50_India">Top India</string>
+    <string name="Viral_Global">Viral Global</string>
+    <string name="Top_hit_Hindi">Hit Hindi</string>
+    <string name="Mood_Booster">Mood Booster</string>
+    <string name="Feeling_Good">Feeling\'Good</string>
+    <string name="Dark_Stromy">Dark&amp;Stromy</string>
+    <string name="feel_good">Feel Good Piano</string>
+    <string name="Myself">Feelin\'Myself</string>
+    <string name="youandme">You&amp; Me</string>
+    <string name="calmBefore">Calm Before Storm</string>
 
 </resources>
