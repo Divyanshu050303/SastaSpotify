@@ -68,7 +68,7 @@ fun SearchBar(modifier: Modifier = Modifier)
                 .heightIn(min = 52.dp),
             shape = RoundedCornerShape(8.dp),
         )
-        Text("Popular artists", style = MaterialTheme.typography.h4, color = Color.White, modifier = modifier.padding(8.dp) )
+        Text("Popular Artists", style = MaterialTheme.typography.h4, color = Color.Black, modifier = modifier.padding(8.dp) )
     }
 }
 private val alignYourBodyData= listOf(
@@ -113,7 +113,7 @@ fun AlignYourBodyRow(
                 )
             }
         }
-        Text("Popular albums", style = MaterialTheme.typography.h4, color = Color.White, modifier = modifier.padding(8.dp))
+        Text("Popular Albums", style = MaterialTheme.typography.h4, color = Color.Black, modifier = modifier.padding(8.dp))
     }
 }
 @Composable
@@ -172,7 +172,7 @@ fun AlignYourBodyRowPlaylist(
                 )
             }
         }
-        Text("Mood", style = MaterialTheme.typography.h4, color = Color.White, modifier = modifier.padding(8.dp))
+        Text("Mood", style = MaterialTheme.typography.h4, color = Color.Black, modifier = modifier.padding(8.dp))
     }
 }
 @Composable
@@ -230,7 +230,7 @@ fun AlignYourBodyRowPlaylistMood(
                 )
             }
         }
-        Text("Popular albums", style = MaterialTheme.typography.h4, color = Color.White, modifier = modifier.padding(8.dp))
+        Text("Popular Albums", style = MaterialTheme.typography.h4, color = Color.Black, modifier = modifier.padding(8.dp))
     }
 }
 @Composable
