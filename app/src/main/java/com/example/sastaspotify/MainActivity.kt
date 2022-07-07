@@ -90,7 +90,7 @@ private fun BottonNavigation(
         items.forEach{
             item -> BottomNavigationItem(
             icon ={ Icon(painterResource(id = item.icon), contentDescription = item.title)},
-            label={Text(text = item.title, fontSize = 9.sp)},
+            label={Text(text = item.title, fontSize = 11.sp)},
             selectedContentColor = Color.Black,
             unselectedContentColor = Color.Black.copy(0.4f),
             alwaysShowLabel = true,
