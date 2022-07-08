@@ -73,9 +73,8 @@ private val alignYourBodyData= listOf(
     R.drawable.arjit_singh to R.string.Arjit_Singh,
     R.drawable.asha_bhonsle to R.string.Asha_Bhonsle,
     R.drawable.badshah to R.string.Badshah,
-    R.drawable.guru_randhawa to R.string.Guru_Randhawa,
     R.drawable.honey_singh to R.string.Honey_Singh,
-    R.drawable.kanika to R.string.Kanika,
+    R.drawable.kanika to R.string.Kanika_Kapoor,
     R.drawable.neha_kakkar to R.string.Neha_Kakkar,
     R.drawable.kumar_sanu to R.string.Kumar_Sanu,
     R.drawable.monali_thakur to R.string.Monali_Thakur,
@@ -84,8 +83,9 @@ private val alignYourBodyData= listOf(
     R.drawable.sonu_nigam to R.string.Sonu_Nigam,
     R.drawable.sonu to R.string.Sonu,
     R.drawable.tony_kakkar to R.string.Tony_kakkar,
-    R.drawable.dhvani_bhanushani to R.string.Dhvani_Bhanushani,
+    R.drawable.tulsi_kumar to R.string.Tulsi_Kumar,
     R.drawable.udit_narayan to R.string.Udit_Narayan,
+    R.drawable.guru_randhawa to R.string.Guru_Randhawa,
     ).map { DrawableStringPair(it.first, it.second) }
 private data class DrawableStringPair(
     @DrawableRes val drawable:Int,
