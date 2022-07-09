@@ -23,7 +23,7 @@ fun Setting(modifier: Modifier = Modifier){
             .padding(horizontal = 10.dp, vertical = 10.dp)
     ) {
         val paddingModifier=Modifier.padding(10.dp);
-        Text("Settings", modifier = paddingModifier, style = MaterialTheme.typography.h4)
+        Text("Settings", modifier = paddingModifier, style = MaterialTheme.typography.h4, color = Color.Black)
 
         Card(
             border = BorderStroke(2.dp, Color.Red),
@@ -45,6 +45,39 @@ fun Setting(modifier: Modifier = Modifier){
             Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 11.dp)) {
                 Icon(painter = painterResource(id = R.drawable.language), contentDescription = null, modifier = Modifier.padding(vertical = 6.dp))
                 Text(text = "Language", modifier = paddingModifier)
+            }
+        }
+        Card(
+            border = BorderStroke(2.dp, Color.Red),
+            modifier = Modifier
+                .padding(10.dp)
+                .fillMaxWidth()
+                .size(70.dp)) {
+            Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 11.dp)) {
+                Icon(painter = painterResource(id = R.drawable.audio), contentDescription = null, modifier = Modifier.padding(vertical = 6.dp))
+                Text(text = "Audio Quality", modifier = paddingModifier)
+            }
+        }
+        Card(
+            border = BorderStroke(2.dp, Color.Red),
+            modifier = Modifier
+                .padding(10.dp)
+                .fillMaxWidth()
+                .size(70.dp)) {
+            Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 11.dp)) {
+                Icon(painter = painterResource(id = R.drawable.notifications), contentDescription = null, modifier = Modifier.padding(vertical = 6.dp))
+                Text(text = "Notifications", modifier = paddingModifier)
+            }
+        }
+        Card(
+            border = BorderStroke(2.dp, Color.Red),
+            modifier = Modifier
+                .padding(10.dp)
+                .fillMaxWidth()
+                .size(70.dp)) {
+            Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 11.dp)) {
+                Icon(painter = painterResource(id = R.drawable.logout), contentDescription = null, modifier = Modifier.padding(vertical = 6.dp))
+                Text(text = "Logout", modifier = paddingModifier)
             }
         }
         Card(
