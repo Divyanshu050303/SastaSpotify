@@ -1,6 +1,7 @@
 package com.example.sastaspotify
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
@@ -41,7 +42,8 @@ fun Setting(modifier: Modifier = Modifier){
             modifier = Modifier
                 .padding(10.dp)
                 .fillMaxWidth()
-                .size(70.dp)) {
+                .size(70.dp)
+                .clickable { }) {
             Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 11.dp)) {
                 Icon(painter = painterResource(id = R.drawable.language), contentDescription = null, modifier = Modifier.padding(vertical = 6.dp))
                 Text(text = "Language", modifier = paddingModifier)
