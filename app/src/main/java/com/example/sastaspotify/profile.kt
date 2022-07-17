@@ -26,15 +26,13 @@ import com.example.sastaspotify.ui.theme.SastaSpotifyTheme
 
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(navigationClick:(@Composable () ->Unit )? =null){
 
     val notification = rememberSaveable { mutableStateOf("") }
     if (notification.value.isNotEmpty()) {
         Toast.makeText(LocalContext.current, notification.value, Toast.LENGTH_LONG).show()
         notification.value = ""
     }
-
-
     val name = rememberSaveable { mutableStateOf("default name") }
     val username = rememberSaveable { mutableStateOf("default username") }
     val bio = rememberSaveable { mutableStateOf("default bio") }
@@ -111,7 +109,7 @@ fun ProfileScreen() {
                     textColor = Color.Black
                 ),
                 singleLine = false,
-                modifier = Modifier.height(150.dp)
+                modifier = Modifier.height(120.dp)
             )
         }
     }
