@@ -4,18 +4,18 @@ package com.example.sastaspotify
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Password
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.sastaspotify.ui.theme.SastaSpotifyTheme
 
 @Composable
 fun SignUp(){
@@ -31,7 +31,7 @@ fun SignUp(){
             OutlinedTextField(
                 value = text,
                 leadingIcon = {
-                    Icon(painter = painterResource(id = R.drawable.person),
+                    Icon(painter = painterResource(id = R.drawable.person1),
                         contentDescription = "emailIcon")
                 },
                 onValueChange = { text = it },
@@ -61,6 +61,11 @@ fun SignUp(){
                 placeholder = { Text(text = "PassWord") },
                 modifier = Modifier.padding(horizontal = 40.dp)
             )
+            Button(onClick = {}, modifier = Modifier.width(120.dp).padding(vertical =8.dp ).align(
+                Alignment.CenterHorizontally)) {
+                Text(text = "Sign up")
+
+            }
             Row(Modifier.padding(horizontal = 80.dp, vertical = 40.dp)) {
                 Image(painter = painterResource(id = R.drawable.google),
                     contentDescription = "Google",
@@ -70,7 +75,13 @@ fun SignUp(){
                     contentDescription = "Google",
                     modifier = Modifier.size(50.dp))
             }
-
         }
+    }
+}
+@Preview
+@Composable
+fun preve(){
+    SastaSpotifyTheme {
+        SignUp()
     }
 }
