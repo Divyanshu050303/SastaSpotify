@@ -1,9 +1,6 @@
 package com.example.sastaspotify
 
-import androidx.navigation.compose.rememberNavController
 import android.os.Bundle
-import android.view.animation.OvershootInterpolator
-import android.window.SplashScreen
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.*
@@ -17,6 +14,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.example.sastaspotify.ui.theme.SastaSpotifyTheme
 
 class MainActivity : ComponentActivity() {
@@ -82,6 +80,7 @@ private fun BottonNavigation(
 }
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Navigation(navController:NavHostController){
 
@@ -91,7 +90,7 @@ fun Navigation(navController:NavHostController){
             SplashScreen(navController = navController)
         }
         composable(BottomNavItem.Home.screen_route){
-            home()
+            home(navController=navController)
         }
 
         composable(BottomNavItem.Favorite.screen_route){
@@ -105,7 +104,19 @@ fun Navigation(navController:NavHostController){
              playlists()
         }
         composable(BottomNavItem.Setting.screen_route){
-            Setting()
+            Setting(navController=navController)
+        }
+        composable( Screen.Quality.toString()){
+            qualityBottomSheet()
+        }
+        composable(Screen.Profile.toString()){
+            ProfileScreen(navController = navController)
+        }
+        composable(Screen.Setting.toString()){
+            Setting(navController = navController)
+        }
+        composable(Screen.SingerPlaylist.toString()){
+            SingerPhotoCard()
         }
     }
 }
