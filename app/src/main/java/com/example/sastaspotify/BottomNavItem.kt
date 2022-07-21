@@ -5,4 +5,11 @@ sealed class BottomNavItem(var title:String, var icon:Int,var screen_route:Strin
     object Playlist:BottomNavItem("Playlist",R.drawable.queue, "playlist")
     object Download:BottomNavItem("Download",R.drawable.dowmload1, "download")
     object Setting:BottomNavItem("Setting",R.drawable.settings, "setting")
+
+}
+sealed class Screen(){
+    object Quality: Screen()
+    object Profile:Screen()
+    object  SingerPlaylist:Screen()
+    object Setting:Screen()
 }
