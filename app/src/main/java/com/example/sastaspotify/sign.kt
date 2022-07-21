@@ -3,10 +3,7 @@ package com.example.sastaspotify
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Password
@@ -50,6 +47,11 @@ fun Sign(){
                 placeholder = { Text(text = "PassWord") },
                 modifier = Modifier.padding(horizontal = 40.dp)
             )
+            Button(onClick = {}, modifier = Modifier.width(120.dp).padding(vertical =8.dp ).align(
+                Alignment.CenterHorizontally)) {
+                Text(text = "Sign up")
+
+            }
             Row(Modifier.padding(horizontal = 80.dp, vertical = 40.dp)) {
                 Image(painter = painterResource(id = R.drawable.google),
                     contentDescription = "Google",
