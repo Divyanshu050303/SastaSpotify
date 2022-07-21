@@ -21,24 +21,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.sastaspotify.ui.theme.SastaSpotifyTheme
+import androidx.navigation.NavController
 
 @Composable
-fun home(){
-        HomeScreen()
+fun home(navController:NavController){
+        HomeScreen(navController)
 }
 @Composable
-fun HomeScreen(modifier: Modifier =Modifier){
-    Column(modifier
+fun HomeScreen(navController: NavController){
+    Column(modifier=Modifier
         .verticalScroll(rememberScrollState())
         .padding(vertical = 16.dp)) {
         Column {
             SearchBar()
-            AlignYourBodyRow()
-            AlignYourBodyRowPlaylist()
-            AlignYourBodyRowPlaylistMood()
+            AlignYourBodyRow(navController = navController)
+            AlignYourBodyRowPlaylist(navController=navController)
+            AlignYourBodyRowPlaylistMood(navController=navController)
         }
     }
 }
@@ -94,7 +93,8 @@ private data class DrawableStringPair(
 )
 @Composable
 fun AlignYourBodyRow(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+            navController: NavController
 ) {
     Column {
         LazyRow(
@@ -106,7 +106,7 @@ fun AlignYourBodyRow(
                 AlignYourBodyElement(
                     drawable = item.drawable,
                     text = item.text,
-                    Modifier.clickable {  }
+                    Modifier.clickable (onClick = { navController.navigate(Screen.SingerPlaylist.toString())})
                 )
             }
         }
@@ -154,7 +154,7 @@ private data class DrawableStringPairPlaylist(
 )
 @Composable
 fun AlignYourBodyRowPlaylist(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier, navController: NavController
 ) {
     Column {
         LazyRow(
@@ -166,6 +166,7 @@ fun AlignYourBodyRowPlaylist(
                 AlignYourBodyElementPlaylist(
                     drawable = item.drawable,
                     text = item.text,
+                    Modifier.clickable (onClick = { navController.navigate(Screen.SingerPlaylist.toString())})
                 )
             }
         }
@@ -212,7 +213,7 @@ private data class DrawableStringPairPlaylistMood(
 )
 @Composable
 fun AlignYourBodyRowPlaylistMood(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,navController: NavController
 ) {
     Column {
         LazyRow(
@@ -223,7 +224,8 @@ fun AlignYourBodyRowPlaylistMood(
             items(alignyourplaylistMooddata) { item ->
                 AlignYourBodyElementPlaylistMood(
                     drawable = item.drawable,
-                    text = item.text
+                    text = item.text,
+                    Modifier.clickable (onClick = { navController.navigate(Screen.SingerPlaylist.toString())})
                 )
             }
         }
@@ -255,10 +257,4 @@ fun AlignYourBodyElementPlaylistMood(
         )
     }
 }
-@Preview
-@Composable
-fun AlignYourBodyRowPlaylistPreview(){
-    SastaSpotifyTheme {
-        AlignYourBodyRowPlaylist()
-    }
-}
+
