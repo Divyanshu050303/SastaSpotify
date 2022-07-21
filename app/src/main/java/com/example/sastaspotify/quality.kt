@@ -3,16 +3,21 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.sastaspotify.ui.theme.SastaSpotifyTheme
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
 @Composable
-fun qualityBottomSheet(){
+fun qualityBottomSheet() {
     val bottomSheetScaffoldState= rememberBottomSheetScaffoldState(
         bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
     )
@@ -57,5 +62,13 @@ fun RadioGroup(list:List<String> = emptyList(),selectedItem:MutableState<String>
                 Text(text = it,Modifier.padding(vertical = 14.dp) )
             }
         }
+    }
+}
+@OptIn(ExperimentalMaterialApi::class)
+@Preview
+@Composable
+fun pre(){
+    SastaSpotifyTheme {
+        qualityBottomSheet()
     }
 }
