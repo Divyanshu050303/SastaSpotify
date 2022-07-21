@@ -10,7 +10,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.Card
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -19,14 +22,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
-import com.example.sastaspotify.ui.theme.SastaSpotifyTheme
 
 
 @Composable
-fun ProfileScreen(navigationClick:(@Composable () ->Unit )? =null){
+fun ProfileScreen(navigationClick:(@Composable () ->Unit )? =null, navController: NavController){
 
     val notification = rememberSaveable { mutableStateOf("") }
     if (notification.value.isNotEmpty()) {
@@ -49,7 +51,7 @@ fun ProfileScreen(navigationClick:(@Composable () ->Unit )? =null){
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(text = "Cancel",
-                modifier = Modifier.clickable { notification.value = "Cancelled" })
+                modifier = Modifier.clickable { notification.value = "Cancelled" }.clickable (onClick = {navController.navigate(Screen.Setting.toString())}))
             Text(text = "Save",
                 modifier = Modifier.clickable { notification.value = "Profile updated" })
         }
@@ -152,13 +154,5 @@ fun ProfileImage() {
             )
         }
         Text(text = "Change profile picture")
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    SastaSpotifyTheme() {
-        ProfileScreen()
     }
 }
