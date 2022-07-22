@@ -26,8 +26,8 @@ class MainActivity : ComponentActivity() {
                 }
                 }
             }
-        }
-
+}
+var name:Int = 1
 
 @Composable
 fun sastaSpotity(){
@@ -83,7 +83,6 @@ private fun BottonNavigation(
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Navigation(navController:NavHostController){
-
     NavHost(navController = navController,
         startDestination = BottomNavItem.Home.screen_route) {
         composable( "splashScreen"){
@@ -116,7 +115,19 @@ fun Navigation(navController:NavHostController){
             Setting(navController = navController)
         }
         composable(Screen.SingerPlaylist.toString()){
-            SingerPhotoCard()
+            when(name){
+                1->SingerPhotoCard("Arjit Singh", R.drawable.ar_rahman)
+                2->SingerPhotoCard("divyansu", R.drawable.badshah)
+                3->SingerPhotoCard("time", R.drawable.divyanshu)
+            }
+
+
+        }
+        composable(Screen.About.toString()){
+            About(navController=navController)
         }
     }
+}
+fun support(nam:Int){
+    name=nam
 }
