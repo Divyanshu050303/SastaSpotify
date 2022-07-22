@@ -12,7 +12,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Setting(modifier: Modifier = Modifier, navController: NavController){
     Column(
@@ -32,18 +31,6 @@ fun Setting(modifier: Modifier = Modifier, navController: NavController){
             Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 11.dp)) {
                 Icon(painter = painterResource(id = R.drawable.person1), contentDescription = null, modifier = Modifier.padding(vertical = 6.dp))
                 Text(text = "Profile", modifier = paddingModifier)
-            }
-        }
-        Card(
-            border = BorderStroke(2.dp, Color.Red),
-            modifier = Modifier
-                .padding(10.dp)
-                .fillMaxWidth()
-                .size(70.dp)
-                .clickable { }) {
-            Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 11.dp)) {
-                Icon(painter = painterResource(id = R.drawable.language), contentDescription = null, modifier = Modifier.padding(vertical = 6.dp))
-                Text(text = "Language", modifier = paddingModifier)
             }
         }
         Card(
@@ -82,7 +69,7 @@ fun Setting(modifier: Modifier = Modifier, navController: NavController){
         }
         Card(
             border = BorderStroke(2.dp, Color.Red),
-            modifier = Modifier
+            modifier = Modifier.clickable(onClick = {navController.navigate(Screen.About.toString())})
                 .padding(10.dp)
                 .fillMaxWidth()
                 .size(70.dp)) {
