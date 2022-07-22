@@ -15,15 +15,14 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun SingerPhotoCard(){
-
+fun SingerPhotoCard(name:String, icon:Int){
     Column() {
-        Text(text = "Singer name", modifier = Modifier.padding(vertical = 10.dp, horizontal = 20.dp), style = MaterialTheme.typography.h4)
+        Text(text = name, modifier = Modifier.padding(vertical = 10.dp, horizontal = 20.dp), style = MaterialTheme.typography.h4)
         Card(modifier = Modifier
             .padding(vertical = 20.dp, horizontal = 70.dp)
             .size(200.dp),
             backgroundColor = Color.Red) {
-            Image(painter = painterResource(id = R.drawable.arjit_singh), contentDescription = null, modifier = Modifier.fillMaxWidth())
+            Image(painterResource(id =icon), contentDescription = null, modifier = Modifier.fillMaxWidth())
 
 
         }
@@ -47,7 +46,9 @@ fun playListView(names:List<String> =List(50){"$it"}){
 }
 @Composable
 fun Gretting(name:String){
-    Card(backgroundColor = Color.Yellow, modifier = Modifier.padding(vertical = 8.dp).height(70.dp)){
+    Card(backgroundColor = Color.Yellow, modifier = Modifier
+        .padding(vertical = 8.dp)
+        .height(70.dp)){
         CardContent(name)
     }
 }
