@@ -106,8 +106,11 @@ fun AlignYourBodyRow(
                 AlignYourBodyElement(
                     drawable = item.drawable,
                     text = item.text,
+                    support(item.text),
                     Modifier.clickable (onClick = { navController.navigate(Screen.SingerPlaylist.toString())})
+
                 )
+
             }
         }
         Text("Popular Albums", style = MaterialTheme.typography.h4, color = Color.Black, modifier = modifier.padding(8.dp))
@@ -117,6 +120,7 @@ fun AlignYourBodyRow(
 fun AlignYourBodyElement(
     @DrawableRes drawable: Int,
     @StringRes text: Int,
+    modifier1: Unit,
     modifier: Modifier = Modifier
 ) {
 
