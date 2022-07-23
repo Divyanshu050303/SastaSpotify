@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Setting(modifier: Modifier = Modifier, navController: NavController){
     Column(
@@ -27,22 +28,11 @@ fun Setting(modifier: Modifier = Modifier, navController: NavController){
             modifier = Modifier
                 .padding(10.dp)
                 .fillMaxWidth()
-                .size(70.dp).clickable(onClick = { navController.navigate(Screen.Profile.toString()) })) {
+                .size(70.dp)
+                .clickable(onClick = { navController.navigate(Screen.Profile.toString()) })) {
             Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 11.dp)) {
                 Icon(painter = painterResource(id = R.drawable.person1), contentDescription = null, modifier = Modifier.padding(vertical = 6.dp))
                 Text(text = "Profile", modifier = paddingModifier)
-            }
-        }
-        Card(
-            border = BorderStroke(2.dp, Color.Red),
-            modifier = Modifier
-                .padding(10.dp)
-                .fillMaxWidth()
-                .size(70.dp)
-                .clickable (onClick = { navController.navigate(Screen.Quality.toString())  })) {
-            Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 11.dp)) {
-                Icon(painter = painterResource(id = R.drawable.audio), contentDescription = null, modifier = Modifier.padding(vertical = 6.dp))
-                Text(text = "Audio Quality", modifier = paddingModifier)
             }
         }
         Card(
@@ -56,20 +46,11 @@ fun Setting(modifier: Modifier = Modifier, navController: NavController){
                 Text(text = "Notifications", modifier = paddingModifier)
             }
         }
+
         Card(
             border = BorderStroke(2.dp, Color.Red),
             modifier = Modifier
-                .padding(10.dp)
-                .fillMaxWidth()
-                .size(70.dp)) {
-            Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 11.dp)) {
-                Icon(painter = painterResource(id = R.drawable.logout), contentDescription = null, modifier = Modifier.padding(vertical = 6.dp))
-                Text(text = "Logout", modifier = paddingModifier)
-            }
-        }
-        Card(
-            border = BorderStroke(2.dp, Color.Red),
-            modifier = Modifier.clickable(onClick = {navController.navigate(Screen.About.toString())})
+                .clickable(onClick = { navController.navigate(Screen.About.toString()) })
                 .padding(10.dp)
                 .fillMaxWidth()
                 .size(70.dp)) {
@@ -77,6 +58,21 @@ fun Setting(modifier: Modifier = Modifier, navController: NavController){
                 Icon(painter = painterResource(id = R.drawable.about), contentDescription = null, modifier = Modifier.padding(vertical = 6.dp))
                 Text(text = "About", modifier = paddingModifier)
             }
+        }
+        qualityBottomSheet()
+    }
+}
+@Composable
+fun logOut(){
+    Card(
+        border = BorderStroke(2.dp, Color.Red),
+        modifier = Modifier
+            .padding(10.dp)
+            .fillMaxWidth()
+            .size(70.dp)) {
+        Row(modifier = Modifier.padding(horizontal = 4.dp, vertical = 11.dp)) {
+            Icon(painter = painterResource(id = R.drawable.logout), contentDescription = null, modifier = Modifier.padding(vertical = 6.dp))
+            Text(text = "Logout", modifier = Modifier.padding(10.dp))
         }
     }
 }
