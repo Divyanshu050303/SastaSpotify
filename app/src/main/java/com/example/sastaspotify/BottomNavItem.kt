@@ -13,9 +13,5 @@ sealed class Screen(){
     object  SingerPlaylist:Screen()
     object Setting:Screen()
     object About:Screen()
+    object  Home:Screen()
 }
-//sealed class SingerScreen(var name:String , var image:Int){
-//    object arjit_singh:SingerScreen("Arjit Singh", R.drawable.arjit_singh)
-//    object Badshah:SingerScreen("Badshah", R.drawable.badshah)
-//    object Alka_yagnik:SingerScreen("Alka Yagnik", R.drawable.alka_yagnik)
-//}
