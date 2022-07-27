@@ -115,16 +115,13 @@ fun Navigation(navController:NavHostController){
             Setting(navController = navController)
         }
         composable(Screen.SingerPlaylist.toString()){
-            when(name){
-                1->SingerPhotoCard("Arjit Singh", R.drawable.ar_rahman)
-                2->SingerPhotoCard("divyansu", R.drawable.badshah)
-                3->SingerPhotoCard("time", R.drawable.divyanshu)
-            }
-
-
+            SingerPhotoCard(name = "Divyanshu singh", icon = R.drawable.divyanshu, navController=navController)
         }
         composable(Screen.About.toString()){
             About(navController=navController)
+        }
+        composable(Screen.Home.toString()){
+            home(navController=navController)
         }
     }
 }
