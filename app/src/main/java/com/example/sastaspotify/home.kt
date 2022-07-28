@@ -1,5 +1,6 @@
 package com.example.sastaspotify
 
+import android.annotation.SuppressLint
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -91,10 +92,11 @@ private data class DrawableStringPair(
     @DrawableRes val drawable:Int,
     @StringRes val text:Int
 )
+@SuppressLint("ResourceType")
 @Composable
 fun AlignYourBodyRow(
-    modifier: Modifier = Modifier,
-            navController: NavController
+    modifier: Modifier = Modifier, navController: NavController
+
 ) {
     Column {
         LazyRow(
@@ -106,8 +108,8 @@ fun AlignYourBodyRow(
                 AlignYourBodyElement(
                     drawable = item.drawable,
                     text = item.text,
-                    support(item.text),
-                    Modifier.clickable (onClick = { navController.navigate(Screen.SingerPlaylist.toString())})
+
+                    Modifier.clickable {navController.navigate(item.text) }
                 )
             }
         }
@@ -118,7 +120,7 @@ fun AlignYourBodyRow(
 fun AlignYourBodyElement(
     @DrawableRes drawable: Int,
     @StringRes text: Int,
-    modifier1: Unit,
+
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
