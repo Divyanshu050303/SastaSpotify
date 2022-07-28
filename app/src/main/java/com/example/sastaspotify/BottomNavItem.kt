@@ -15,3 +15,9 @@ sealed class Screen(){
     object About:Screen()
     object  Home:Screen()
 }
+sealed class DetailScreen(val name :String, val image:Int, var route:String ){
+    object  Alka:DetailScreen("Alka Yagnik", R.drawable.alka_yagnik, "Alka Yagnik")
+    object  screen:DetailScreen("Honey Singh", R.drawable.honey_singh, "Honey Singh")
+//    object  Arjit:DetailScreen("Arjit Singh", R.drawable.arjit_singh)
+
+}
