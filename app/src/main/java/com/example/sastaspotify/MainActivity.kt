@@ -80,6 +80,7 @@ private fun BottonNavigation(
 }
 
 
+
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Navigation(navController:NavHostController){
@@ -123,8 +124,11 @@ fun Navigation(navController:NavHostController){
         composable(Screen.Home.toString()){
             home(navController=navController)
         }
+        composable(DetailScreen.Alka.route){
+            SingerPhotoCard(name ="Alka Yagnik" , icon =R.drawable.alka_yagnik , navController = navController)
+        }
+        composable(DetailScreen.screen.route){
+            SingerPhotoCard(name ="Arjit Singh" , icon =R.drawable.arjit_singh , navController = navController)
+        }
     }
-}
-fun support(nam:Int){
-    name=nam
 }
