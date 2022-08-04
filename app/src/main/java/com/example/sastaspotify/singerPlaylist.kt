@@ -14,10 +14,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.sastaspotify.data.DataProvider
 
 
 @Composable
-fun SingerPhotoCard(name:String, icon:Int, navController: NavController){
+fun SingerPhotoCard(singerPlaylist: DataProvider, navController: NavController){
     Column( Modifier.padding(vertical = 20.dp)) {
         Row(Modifier.padding(vertical = 6.dp, horizontal = 10.dp)) {
             Image(
@@ -26,7 +27,7 @@ fun SingerPhotoCard(name:String, icon:Int, navController: NavController){
                 Modifier.size(50.dp).padding(vertical = 10.dp).clickable(onClick = {navController.navigate(Screen.Home.toString())})
             )
             Text(
-                text = name,
+                text = singerPlaylist.singerName,
                 modifier = Modifier.padding(vertical = 10.dp, horizontal = 30.dp),
                 style = MaterialTheme.typography.h5
             )
@@ -35,20 +36,20 @@ fun SingerPhotoCard(name:String, icon:Int, navController: NavController){
             .padding(vertical = 20.dp, horizontal = 70.dp)
             .size(200.dp),
             backgroundColor = Color.Red) {
-            Image(painterResource(id =icon), contentDescription = null, modifier = Modifier.fillMaxWidth())
+            Image(painterResource(id =singerPlaylist.singerImage), contentDescription = null, modifier = Modifier.fillMaxWidth())
 
 
         }
         Image(painter = painterResource(id = R.drawable.play), contentDescription = null , modifier = Modifier
             .padding(horizontal = 135.dp)
             .size(60.dp))
-        playListView()
+        PlayListView()
     }
 
 
 }
 @Composable
-fun playListView(names:List<String> =List(50){"$it"}){
+fun PlayListView(names:List<String> =List(50){"$it"}){
 
     LazyColumn(modifier = Modifier.padding(horizontal = 5.dp, vertical = 4.dp)) {
         items(items = names) { name ->
