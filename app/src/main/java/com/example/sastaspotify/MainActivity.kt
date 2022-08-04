@@ -11,11 +11,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.sastaspotify.data.DataProvider
 import com.example.sastaspotify.ui.theme.SastaSpotifyTheme
+import com.google.gson.Gson
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,20 +119,38 @@ fun Navigation(navController:NavHostController){
         composable(Screen.Setting.toString()){
             Setting(navController = navController)
         }
-        composable(Screen.SingerPlaylist.toString()){
-            SingerPhotoCard(name = "Divyanshu singh", icon = R.drawable.divyanshu, navController=navController)
-        }
+
         composable(Screen.About.toString()){
             About(navController=navController)
         }
         composable(Screen.Home.toString()){
             home(navController=navController)
         }
-        composable(DetailScreen.Alka.route){
-            SingerPhotoCard(name ="Alka Yagnik" , icon =R.drawable.alka_yagnik , navController = navController)
+        composable("singerDetail/{singer}", arguments = listOf(navArgument("singer"){
+            type= NavType.StringType
+        })) { backStackEntry ->
+            backStackEntry.arguments?.getString("singer")?.let { json ->
+                val singer = Gson().fromJson(json, DataProvider::class.java)
+                SingerPhotoCard(singerPlaylist = singer, navController = navController)
+            }
         }
-        composable(DetailScreen.screen.route){
-            SingerPhotoCard(name ="Arjit Singh" , icon =R.drawable.arjit_singh , navController = navController)
+        composable("playListDetail/{singerPlaylists}", arguments = listOf(navArgument("singerPlaylists"){
+            type= NavType.StringType
+        })) { backStackEntry ->
+            backStackEntry.arguments?.getString("singerPlaylists")?.let { json ->
+                val singer = Gson().fromJson(json, DataProvider::class.java)
+                SingerPhotoCard(singerPlaylist = singer, navController = navController)
+            }
         }
+        composable("playListDetailMood/{singerPlaylistsMood}", arguments = listOf(navArgument("singerPlaylistsMood"){
+            type= NavType.StringType
+        })) { backStackEntry ->
+            backStackEntry.arguments?.getString("singerPlaylistsMood")?.let { json ->
+                val singer = Gson().fromJson(json, DataProvider::class.java)
+                SingerPhotoCard(singerPlaylist = singer, navController = navController)
+            }
+        }
+
+
     }
 }
