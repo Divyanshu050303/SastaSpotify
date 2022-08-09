@@ -6,15 +6,21 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil.compose.rememberImagePainter
+import com.example.sastaspotify.ViewModel.MainViewModel
 import com.example.sastaspotify.data.DataProvider
+import com.example.sastaspotify.data.DataState
+import com.example.sastaspotify.data.firebaseDataFile
 
 
 @Composable
@@ -24,7 +30,10 @@ fun SingerPhotoCard(singerPlaylist: DataProvider, navController: NavController){
             Image(
                 painter = painterResource(id = R.drawable.prev),
                 contentDescription = null,
-                Modifier.size(50.dp).padding(vertical = 10.dp).clickable(onClick = {navController.navigate(Screen.Home.toString())})
+                Modifier
+                    .size(50.dp)
+                    .padding(vertical = 10.dp)
+                    .clickable(onClick = { navController.navigate(Screen.Home.toString()) })
             )
             Text(
                 text = singerPlaylist.singerName,
@@ -43,23 +52,49 @@ fun SingerPhotoCard(singerPlaylist: DataProvider, navController: NavController){
         Image(painter = painterResource(id = R.drawable.play), contentDescription = null , modifier = Modifier
             .padding(horizontal = 135.dp)
             .size(60.dp))
-        PlayListView()
+        SetData(viewModel = MainViewModel())
     }
 
 
 }
 @Composable
-fun PlayListView(names:List<String> =List(50){"$it"}){
+fun SetData(viewModel: MainViewModel){
+    when(val result=viewModel.response.value){
+        is DataState.Loading ->{
+            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
+                CircularProgressIndicator()
+            }
+        }
+        is DataState.Success ->{
+            PlayListView(result.data)
+
+        }
+        is DataState.Failure ->{
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+                Text(text = result.message, fontSize = MaterialTheme.typography.h5.fontSize)
+            }
+        }
+        else ->{
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+                Text(text = "Error in fetching Data from firebase", fontSize = MaterialTheme.typography.h5.fontSize)
+            }
+        }
+    }
+
+
+}
+@Composable
+fun PlayListView(names:MutableList<firebaseDataFile>){
 
     LazyColumn(modifier = Modifier.padding(horizontal = 5.dp, vertical = 4.dp)) {
         items(items = names) { name ->
-            Gretting(name = name)
+            Gretting( name)
         }
 
     }
 }
 @Composable
-fun Gretting(name:String){
+fun Gretting(name:firebaseDataFile){
     Card(backgroundColor = Color.Yellow, modifier = Modifier
         .padding(vertical = 8.dp)
         .height(70.dp)){
@@ -68,14 +103,14 @@ fun Gretting(name:String){
 }
 
 @Composable
-private fun CardContent(name:String){
+private fun CardContent(name:firebaseDataFile){
     Row(modifier = Modifier.padding(horizontal = 8.dp)){
         Column(modifier= Modifier
             .padding(horizontal = 12.dp)
             .weight(1f)) {
             Row(modifier = Modifier.padding( vertical = 12.dp)) {
-                Image(painter = painterResource(id = R.drawable.arjit_singh), contentDescription =null, modifier = Modifier.size(50.dp) )
-                Text(text = "Song name", modifier = Modifier.padding(horizontal = 20.dp, vertical = 5.dp), style = MaterialTheme.typography.h5)
+                Image(painter = rememberImagePainter(name.Image ), contentDescription =null, modifier = Modifier.size(50.dp) )
+                name.name?.let { Text(text = it, modifier = Modifier.padding(horizontal = 20.dp, vertical = 5.dp), style = MaterialTheme.typography.h5) }
             }
 
         }
