@@ -16,13 +16,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
 import com.example.sastaspotify.ViewModel.MainViewModel
 import com.example.sastaspotify.data.DataProvider
 import com.example.sastaspotify.data.DataState
 import com.example.sastaspotify.data.firebaseDataFile
 
-
+var classA = MainActivity()
 @Composable
 fun SingerPhotoCard(singerPlaylist: DataProvider, navController: NavController){
     Column( Modifier.padding(vertical = 20.dp)) {
@@ -46,28 +46,24 @@ fun SingerPhotoCard(singerPlaylist: DataProvider, navController: NavController){
             .size(200.dp),
             backgroundColor = Color.Red) {
             Image(painterResource(id =singerPlaylist.singerImage), contentDescription = null, modifier = Modifier.fillMaxWidth())
-
-
         }
         Image(painter = painterResource(id = R.drawable.play), contentDescription = null , modifier = Modifier
             .padding(horizontal = 135.dp)
             .size(60.dp))
-        SetData(viewModel = MainViewModel())
+        SetData(classA.viewModel)
     }
-
-
 }
 @Composable
 fun SetData(viewModel: MainViewModel){
     when(val result=viewModel.response.value){
         is DataState.Loading ->{
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
-                CircularProgressIndicator()
+
+                CircularProgressIndicator(color = Color.White)
             }
         }
         is DataState.Success ->{
             PlayListView(result.data)
-
         }
         is DataState.Failure ->{
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
@@ -80,17 +76,14 @@ fun SetData(viewModel: MainViewModel){
             }
         }
     }
-
-
 }
 @Composable
 fun PlayListView(names:MutableList<firebaseDataFile>){
 
     LazyColumn(modifier = Modifier.padding(horizontal = 5.dp, vertical = 4.dp)) {
         items(items = names) { name ->
-            Gretting( name)
+            Gretting(name)
         }
-
     }
 }
 @Composable
@@ -101,7 +94,6 @@ fun Gretting(name:firebaseDataFile){
         CardContent(name)
     }
 }
-
 @Composable
 private fun CardContent(name:firebaseDataFile){
     Row(modifier = Modifier.padding(horizontal = 8.dp)){
@@ -109,10 +101,9 @@ private fun CardContent(name:firebaseDataFile){
             .padding(horizontal = 12.dp)
             .weight(1f)) {
             Row(modifier = Modifier.padding( vertical = 12.dp)) {
-                Image(painter = rememberImagePainter(name.Image ), contentDescription =null, modifier = Modifier.size(50.dp) )
+                Image(painter = rememberAsyncImagePainter(name.Image), contentDescription =null, modifier = Modifier.size(50.dp) )
                 name.name?.let { Text(text = it, modifier = Modifier.padding(horizontal = 20.dp, vertical = 5.dp), style = MaterialTheme.typography.h5) }
             }
-
         }
     }
 }
