@@ -34,8 +34,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
 }
-var name:Int = 1
-
 @Composable
 fun sastaSpotity(){
     val navController= rememberNavController()
