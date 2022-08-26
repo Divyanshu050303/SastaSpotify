@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "829851311881",
+    "project_id": "sastaspotify-15dbe",
+    "storage_bucket": "sastaspotify-15dbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829851311881:android:f7a37c2770c39b5e6b7dd8",
+        "android_client_info": {
+          "package_name": "com.example.sastaspotify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829851311881-spit1uem8ueu8rrspka62gr5seph9hrh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApdU4qiUVrn7uovgqyFMjmU7oVZqze82k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "829851311881-spit1uem8ueu8rrspka62gr5seph9hrh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
