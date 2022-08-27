@@ -7,12 +7,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.sastaspotify.ui.theme.SastaSpotifyTheme
+import androidx.navigation.NavController
+import com.example.sastaspotify.data.firebaseDataFile
 
 @Composable
-fun Player(){
+fun Player (songDetail: firebaseDataFile, navController: NavController){
     Column(modifier = Modifier
         .padding(horizontal = 10.dp, vertical = 20.dp)
         .fillMaxWidth()) {
@@ -25,7 +25,7 @@ fun Player(){
 
         }
         Spacer(modifier = Modifier.height(5.dp))
-        Text(text = "Song name", style = MaterialTheme.typography.h5, modifier = Modifier.padding(12.dp), color = Color.Black)
+        Text(text = songDetail.name, style = MaterialTheme.typography.h5, modifier = Modifier.padding(12.dp), color = Color.Black)
         Text(text = "Singer name", style = MaterialTheme.typography.h6, modifier = Modifier.padding(12.dp), color = Color.Black)
         Spacer(modifier = Modifier.height(20.dp))
         Row {
@@ -48,12 +48,5 @@ fun Player(){
             Image(painter = painterResource(id = R.drawable.next), contentDescription =null, modifier = Modifier.padding(horizontal = 16.dp) )
             Image(painter = painterResource(id = R.drawable.fastforward), contentDescription =null , modifier = Modifier.padding(horizontal = 16.dp))
         }
-    }
-}
-@Preview
-@Composable
-fun player(){
-    SastaSpotifyTheme {
-        Player()
     }
 }
