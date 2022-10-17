@@ -53,16 +53,20 @@ fun SingerPhotoCard(singerPlaylist: DataProvider, navController: NavController){
 }
 @Composable
 fun PlayListView(names:MutableList<firebaseDataFile>, navController: NavController){
+    fun navigateToSingerPlaySong(singer: firebaseDataFile){
+        val PlaySong= Gson().toJson(singer)
+        navController.navigate("PlayerFull/$PlaySong")
+    }
 
 
     LazyColumn(modifier = Modifier.padding(horizontal = 5.dp, vertical = 4.dp)) {
         items(items = names) { name ->
-            Gretting(name, navController)
+            Gretting(name, navController, Modifier.clickable(onClick = {navigateToSingerPlaySong(name)} ))
         }
     }
 }
 @Composable
-fun Gretting(name:firebaseDataFile, navController: NavController){
+fun Gretting(name: firebaseDataFile, navController: NavController, param: Any?){
     Card(backgroundColor = Color.White, modifier = Modifier
         .padding(vertical = 8.dp)
         .height(70.dp)){
@@ -71,17 +75,14 @@ fun Gretting(name:firebaseDataFile, navController: NavController){
 }
 @Composable
 private fun CardContent(name:firebaseDataFile, navController: NavController){
-    fun navigateToSingerPlaySong(singerPlaylistView: firebaseDataFile){
-        val PlaySong= Gson().toJson(singerPlaylistView)
-        navController.navigate("PlayerFull/$PlaySong")
-    }
-    Row(modifier = Modifier.padding(horizontal = 8.dp).clickable{}){
+
+    Row(modifier = Modifier.padding(horizontal = 8.dp)){
         Column(modifier= Modifier
             .padding(horizontal = 8.dp)
             .weight(1f)) {
-            Row(modifier = Modifier.padding( vertical = 12.dp).clickable(onClick = {navigateToSingerPlaySong(name)} )) {
+            Row(modifier = Modifier.padding( vertical = 12.dp)) {
 
-                Image(painter = rememberAsyncImagePainter(model = name.imageurl), contentDescription =null, modifier = Modifier.size(60.dp).height(30.dp) )
+                Image(painter = rememberAsyncImagePainter(model = name.image), contentDescription =null, modifier = Modifier.size(60.dp).height(30.dp) )
                 Text(text = name.name, modifier = Modifier.padding(horizontal = 20.dp, vertical = 5.dp), style = MaterialTheme.typography.h6)
             }
         }
