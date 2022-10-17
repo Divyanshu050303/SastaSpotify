@@ -6,7 +6,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -18,7 +21,7 @@ import com.example.sastaspotify.data.firebaseDataFile
 
 @Composable
 fun Player (songDetail: firebaseDataFile, navController: NavController){
-    val url ="https://firebasestorage.googleapis.com/v0/b/sastaspotify-15dbe.appspot.com/o/Alka%20Yagnik%2FAisi%20Deewangi.mp3?alt=media&token=d9fdc6ff-5458-4bf5-90b3-050905c821ce"
+    val url =songDetail.url
 
     val mediaPlayer = MediaPlayer().apply {
         setAudioAttributes(
@@ -42,7 +45,7 @@ fun Player (songDetail: firebaseDataFile, navController: NavController){
                 .fillMaxWidth()
                 .width(400.dp)
                 .height(350.dp)) {
-            Image(painter = rememberAsyncImagePainter(songDetail.imageurl), contentDescription =null, modifier = Modifier.fillMaxWidth() )
+            Image(painter = rememberAsyncImagePainter(songDetail.image), contentDescription =null, modifier = Modifier.fillMaxWidth() )
 
         }
         Spacer(modifier = Modifier.height(5.dp))
@@ -57,10 +60,10 @@ fun Player (songDetail: firebaseDataFile, navController: NavController){
             Image(painter = painterResource(id = R.drawable.download), contentDescription = "Download", modifier = Modifier.padding(horizontal = 25.dp))
             Image(painter = painterResource(id = R.drawable.playlist), contentDescription = "Add to playlist",modifier = Modifier.padding(horizontal = 14.dp) )
         }
-        var sliderPosition by remember { mutableStateOf(0f) }
-        Slider(value =sliderPosition,
-            onValueChange ={sliderPosition=it} ,
-            valueRange = 0f..100f,
+        val sliderPosition by remember { mutableStateOf(mediaPlayer.duration) }
+        Slider(value = sliderPosition.toFloat(),
+            onValueChange ={sliderPosition.times(mediaPlayer.duration) } ,
+
             colors =SliderDefaults.colors(thumbColor = Color.Red, activeTrackColor = Color.Black, inactiveTrackColor = Color.White ))
         Row (modifier = Modifier.fillMaxWidth()){
             Image(painter = painterResource(id = R.drawable.rewind), contentDescription =null , modifier = Modifier.padding(horizontal = 16.dp))
