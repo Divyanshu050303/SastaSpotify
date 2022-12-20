@@ -48,11 +48,11 @@ fun SingerPhotoCard(singerPlaylist: DataProvider, navController: NavController){
         Image(painter = painterResource(id = R.drawable.play), contentDescription = null , modifier = Modifier
             .padding(horizontal = 135.dp)
             .size(60.dp))
-        PlayListView(names = arrayList.temList, navController)
+        PlayListView(names = singerPlaylist.booList, navController)
     }
 }
 @Composable
-fun PlayListView(names:MutableList<firebaseDataFile>, navController: NavController){
+fun PlayListView(names: List<firebaseDataFile>, navController: NavController){
     fun navigateToSingerPlaySong(singer: firebaseDataFile){
         val PlaySong= Gson().toJson(singer)
         navController.navigate("PlayerFull/$PlaySong")
@@ -80,7 +80,7 @@ private fun CardContent(name:firebaseDataFile, navController: NavController){
         Column(modifier= Modifier
             .padding(horizontal = 8.dp)
             .weight(1f)) {
-            Row(modifier = Modifier.padding( vertical = 12.dp)) {
+            Row(modifier = Modifier.padding( vertical = 12.dp).clickable { navController.navigate(Screen.PlayerFull.toString()) }) {
 
                 Image(painter = rememberAsyncImagePainter(model = name.image), contentDescription =null, modifier = Modifier.size(60.dp).height(30.dp) )
                 Text(text = name.name, modifier = Modifier.padding(horizontal = 20.dp, vertical = 5.dp), style = MaterialTheme.typography.h6)
