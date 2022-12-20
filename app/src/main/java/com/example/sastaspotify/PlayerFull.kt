@@ -21,7 +21,7 @@ import com.example.sastaspotify.data.firebaseDataFile
 
 @Composable
 fun Player (songDetail: firebaseDataFile, navController: NavController){
-    val url =songDetail.url
+    val url =songDetail.Song
 
     val mediaPlayer = MediaPlayer().apply {
         setAudioAttributes(
