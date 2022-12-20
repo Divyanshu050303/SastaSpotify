@@ -147,7 +147,7 @@ fun Navigation(navController:NavHostController){
         })){
          navBackStackEntry ->navBackStackEntry.arguments?.getString("PlaySong")?.let{
              json ->val song1 =Gson().fromJson(json, firebaseDataFile::class.java)
-            Player( songDetail=song1, navController )
+            Player( song1, navController )
         }
         }
     }
